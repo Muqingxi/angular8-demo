@@ -1,0 +1,50 @@
+<nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar"
+        nzCollapsible
+        nzWidth="256px"
+        nzBreakpoint="md"
+        [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null"
+        (nzCollapsedChange)="slide()">
+        <div class="sidebar-logo">
+            <a href="https://ng.ant.design/" target="_blank">
+                <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+                <h1>Ant Design Of Angular</h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <ng-container *ngFor="let menu of routeArr">
+                <li *ngIf="menu.data.icon" nz-submenu nzOpen [nzTitle]="menu.data.name" [nzIcon]="menu.data.icon">
+                    <ul>
+                        <ng-container *ngFor="let menuItem of menu.children">
+                            <li *ngIf="menuItem.data.icon" nz-menu-item nzMatchRouter>
+                                <a [routerLink]="menuItem.data.link">
+                                    <i nz-icon [nzType]="menuItem.data.icon" nzTheme="outline"></i>
+                                    {{ menuItem.data.name }}
+                                </a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </li>
+            </ng-container>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <div class="app-header">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                    <i class="trigger"
+                        nz-icon
+                        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                    ></i>
+                </span>
+            </div>
+        </nz-header>
+        <app-nav #nav></app-nav>
+        <nz-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>

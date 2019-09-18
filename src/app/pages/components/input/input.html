@@ -1,0 +1,56 @@
+<div class="com-input">
+    <nz-descriptions nzTitle="Input" nzBordered nzSize="small">
+        <nz-descriptions-item nzTitle="文本输入框" [nzSpan]="3">
+            <div nz-row [nzGutter]="gutter">
+                <div nz-col nzSpan="8">
+                    <input nz-input nzSize="default" [(ngModel)]="text"/>
+                </div>
+                <div nz-col nzSpan="8" nzOffset="8">{{ text }}</div>
+            </div>
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="数字输入框" [nzSpan]="3">
+            <div nz-row [nzGutter]="gutter">
+                <div nz-col nzSpan="8">
+                    <input nz-input nzSize="default" [(ngModel)]="number" appNumber/>
+                </div>
+                <div nz-col nzSpan="8">指令：appNumber</div>
+                <div nz-col nzSpan="8">{{ number }}</div>
+            </div>
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="金额输入框" [nzSpan]="3">
+            <div nz-row [nzGutter]="gutter">
+                <div nz-col nzSpan="8">
+                    <input nz-input nzSize="default" [(ngModel)]="money" [appMoney]="[10, 3]"/>
+                </div>
+                <div nz-col nzSpan="8">指令：appMoney = "[1, 3]"</div>
+                <div nz-col nzSpan="8">{{ money }}</div>
+            </div>
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="千分位输入框" [nzSpan]="3">
+            <div nz-row [nzGutter]="gutter">
+                <div nz-col nzSpan="8">
+                    <input nz-input nzSize="default" [(ngModel)]="thousands" appNumber appThousands="number"/>
+                </div>
+                <div nz-col nzSpan="8">指令：appThousands = "number"</div>
+                <div nz-col nzSpan="8">{{ thousands }}</div>
+            </div>
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="开始日期 ~ 结束日期" [nzSpan]="3">
+            <div nz-row [nzGutter]="gutter">
+                <div nz-col nzSpan="8">
+                    <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="formatDate('dateRange', 'arr')"></nz-range-picker>
+                </div>
+                <div nz-col nzSpan="8" nzOffset="8">{{ dateRange }}</div>
+            </div>
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="开始日期 ~ 结束日期" [nzSpan]="3">
+            <div nz-row [nzGutter]="gutter">
+                <div nz-col nzSpan="16">
+                    <nz-date-picker [(ngModel)]="start" (ngModelChange)="formatDate('start')" [nzDisabledDate]="startLimit"></nz-date-picker> - 
+                    <nz-date-picker [(ngModel)]="end" (ngModelChange)="formatDate('end')" [nzDisabledDate]="endLimit"></nz-date-picker>
+                </div>
+                <div nz-col nzSpan="8">{{ start }}<span *ngIf="start && end"> - </span>{{ end }}</div>
+            </div>
+        </nz-descriptions-item>
+    </nz-descriptions>
+</div>

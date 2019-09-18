@@ -1,0 +1,41 @@
+<div class="com-tag">
+    <nz-alert
+        nzType="info"
+        nzMessage="第一种:每个tag只存在一个"
+        [nzDescription]="first"
+    >
+    </nz-alert>
+    <ng-template #first>
+        <span>在/component/nav/nav.ts内设置<i>only=true</i>,同一个link下不同params的<i>key</i>值唯一</span>
+    </ng-template>
+    <nz-alert
+        nzType="info"
+        nzMessage="第二种:除了左侧菜单的tag，其他tag可存在多个"
+        [nzDescription]="second"
+    >
+    </nz-alert>
+    <ng-template #second>
+        <span>在/component/nav/nav.ts内设置<i>only=false</i>,同一个link下不同params的<i>key</i>值<i>不</i>唯一</span>
+    </ng-template>
+    <nz-descriptions nzBordered nzLayout="vertical">
+        <nz-descriptions-item nzTitle="User List">
+            <button nz-button nzType="dashed" nzBlock (click)="toEdit()">新增</button>
+            <nz-table #basicTable [nzData]="list" [nzShowPagination]="false" nzSize="small">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th nzWidth="120px" nzAlign="center">Operate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of basicTable.data">
+                        <td>{{ item.name }}</td>
+                        <td nzAlign="center">
+                            <button nz-button nzType="primary" nzSize="small" (click)="toEdit(item)">编辑</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-descriptions-item>
+    </nz-descriptions>
+</div>

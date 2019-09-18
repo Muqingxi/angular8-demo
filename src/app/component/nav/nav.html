@@ -1,0 +1,28 @@
+<div class="app-nav">
+    <div class="nav-row">
+        <button type="button" class="unit btn" (click)="move('left')"><i nz-icon nzType="left" nzTheme="outline"></i></button>
+        <div class="nav-list">
+            <div class="nav-scroll" [ngStyle]="{'left': left + 'px'}">
+                <span *ngFor="let item of navList; let i = index">
+                    <nz-tag
+                        class="tag"
+                        [ngClass]="{'actived': item.key === (addItem && addItem.key)}"
+                        [nzMode]="i === 0 ? '' : 'closeable'"
+                        (click)="chooseTag(item)"
+                        (nzOnClose)="closeTag(item)"
+                        (contextmenu)="contextMenu($event, menu)">
+                            <span class="iconfont icon-dot"></span>{{ item.name }}
+                    </nz-tag>
+                </span>
+            </div>
+        </div>
+        <button type="button" class="unit btn" (click)="move('right')"><i nz-icon nzType="right" nzTheme="outline"></i></button>
+        <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" nzTrigger="hover" class="unit"><i nz-icon nzType="close-circle" nzTheme="outline"></i></button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+                <li nz-menu-item (click)="closeItem()">关闭其他</li>
+                <li nz-menu-item (click)="closeAll()">关闭所有</li>
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+</div>

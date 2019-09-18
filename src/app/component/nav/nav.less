@@ -1,0 +1,77 @@
+.app-nav{
+    position: relative;
+    .nav-row{
+        display: flex;
+        height: 40px;
+        .unit{
+            background-color: #fff;
+            height: 100%;
+            border-top: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
+            z-index: 1;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+        }
+        /deep/ .ant-dropdown-trigger{
+            box-shadow: none;
+            border-radius: 0;
+            border: none;
+            border-left: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        .nav-list{
+            height: 100%;
+            box-shadow: 0px 0 3px 2px rgba(100, 100, 100, 0.1) inset;
+            flex: auto;
+            align-content: center;
+            padding: 5px;
+            position: relative;
+            .nav-scroll{
+                position: absolute;
+                white-space: nowrap;
+                transition: left 0.3s ease;
+                margin-left: 5px;
+                .tag{
+                    height: 30px;
+                    background-color: #fff;
+                    border: 1px solid #e8eaec;
+                    display: inline-block;
+                    .icon-dot{
+                        color: #e8eaec;
+                        line-height: 31px;
+                        vertical-align: middle;
+                    }
+                    &.actived{
+                        .icon-dot{
+                            color: #2D8cF0;
+                        }
+                    }
+                    &:focus{
+                        outline: none;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .close{
+            border-left: 1px solid #F0F0F0;
+            width: 30px;
+        }
+    }
+}
+/deep/ .tag{
+    position: relative;
+    padding-right: 30px;
+    .anticon-close{
+        position: absolute;
+        right: 7px;
+        top: 50%;
+        margin-top: -5px;
+    }
+}
+/deep/ .ant-dropdown-menu-item{
+    font-size: 12px;
+}
