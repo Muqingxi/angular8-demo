@@ -1,0 +1,21 @@
+<div class="app-media">
+    <div class="list" *ngFor="let media of list; let i = index">
+        <img *ngIf="media.type === 'image'" [src]="media.src">
+        <video *ngIf="media.type === 'video'" [src]="media.src"></video>
+        <i *ngIf="media.type !== 'image' && media.type !== 'video'" nz-icon nzType="customer-service" nzTheme="outline"></i>
+        <div class="operate">
+            <i nz-icon nzType="eye" nzTheme="outline" (click)="preview(media)"></i>
+            <i nz-icon nzType="rest" nzTheme="outline" (click)="delete(i)"></i>
+        </div>
+    </div>
+    <a class="add" href="javascript:;" (click)="add()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+        <input class="file" (change)="change($event)" type="file" [accept]="_accept">
+    </a>
+    <nz-modal class="contain" [(nzVisible)]="modal.status" nzTitle="预览" (nzOnCancel)="close()">
+        <img *ngIf="modal.type === 'image'" class="media" [src]="modal.src">
+        <video *ngIf="modal.type === 'video'" class="media" [src]="modal.src" controls></video>
+        <audio *ngIf="modal.type === 'audio'" class="media" [src]="modal.src" controls></audio>
+        <span *nzModalFooter></span>
+    </nz-modal>
+</div>

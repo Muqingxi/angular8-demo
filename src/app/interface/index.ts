@@ -5,3 +5,9 @@ export interface navList {
     icon?: String,
     params?: Object
 }
+
+export interface media {
+    type?: String,
+    src?: String
+    file?: Blob | File
+}

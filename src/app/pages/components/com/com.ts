@@ -6,5 +6,6 @@ import { Component } from '@angular/core'
     styleUrls: ['./com.less']
 })
 export class comComponent {
+    list = []
 }
 

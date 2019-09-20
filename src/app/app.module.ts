@@ -20,6 +20,7 @@ import { numberDirective, moneyDirective, thousandsDirective } from './app.direc
 
 import { navComponent } from './component/nav/nav'
 import { removeComponent } from './component/removeTag/removeTag'
+import { mediaComponent } from './component/upload/media/media'
 
 registerLocaleData(zh);
 
@@ -38,7 +39,8 @@ registerLocaleData(zh);
     thousandsDirective,
     
     navComponent,
-    removeComponent
+    removeComponent,
+    mediaComponent
   ],
   imports: [
     BrowserModule,

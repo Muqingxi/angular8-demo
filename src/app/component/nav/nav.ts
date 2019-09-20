@@ -18,6 +18,7 @@ export class navComponent {
     navList: navList[]
     linearArr
     addItem: navList
+    singleItem: navList
     constructor(
         private navService: navService,
         private router: Router,
@@ -96,13 +97,22 @@ export class navComponent {
         this.left = 0
     }
     closeItem() {
-        this.navList.splice(1, this.navList.length - 1)
-        this.navService.addTag(this.navList, Object.assign({}, this.addItem))
+        if (this.navList.length !== 2 && this.navList[1].key !== this.addItem.key) {
+            this.navList.splice(1, this.navList.length - 1)
+            let choosed = this.singleItem || this.addItem
+            this.navService.addTag(this.navList, Object.assign({}, this.singleItem || this.addItem))
+            if (choosed.key !== this.addItem.key) {
+                this.router.navigate([choosed.link], {queryParams: choosed.params})
+            }
+        }
         this.left = 0
+        // 情空
+        this.singleItem = null
     }
     // nav右键
-    contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
-        this.nzContextMenuService.create($event, menu);
+    contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent, item: navList): void {
+        this.nzContextMenuService.create($event, menu)
+        this.singleItem = item
     }
     slide() {
         setTimeout(() => {
